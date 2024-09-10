@@ -1,10 +1,10 @@
-import React, {useCallback, useContext} from 'react';
+import React, { useContext} from 'react';
 import classes from './ItemCard.module.css'
 import {FavouritesCartContext} from "../../context/context";
 const ItemCard = ({img, title, price, rate, id,  ...props}) => {
     const {cartItems, setCartItems, favourites, setFavourites} = useContext(FavouritesCartContext)
     console.log(123)
-    const onClickLike = useCallback(() => {
+    const onClickLike = () => {
         if (favourites.includes(id)){
             setFavourites(favourites.filter(item => item !== id))
         }
@@ -12,22 +12,22 @@ const ItemCard = ({img, title, price, rate, id,  ...props}) => {
             setFavourites(prev => [...prev, id])
         }
         console.log(favourites)
-    }, [favourites, id, setFavourites])
-    const onClickAdd = useCallback(() => {
-        if (cartItems.includes(id)){
-            setCartItems(cartItems.filter(item => item !== id))
+    }
+    const onClickAdd = () => {
+        if (cartItems.some(item => item.id === id)){
+            setCartItems(cartItems.filter(item => item.id !== id))
         }
         else {
-            setCartItems(cartItems => [...cartItems, id])
+            setCartItems(cartItems => [...cartItems, {id: id, amount: 1}])
         }
         console.log(cartItems)
-    }, [cartItems, id, setCartItems])
-    const checkIsAdded = useCallback(() => {
-        return cartItems.includes(id)
-    }, [cartItems, id])
-    const checkIsLiked = useCallback(() => {
+    }
+    const checkIsAdded = () => {
+        return cartItems.some(item => item.id === id)
+    }
+    const checkIsLiked = () => {
         return favourites.includes(id)
-    }, [favourites, id])
+    }
     return (
         <div className={classes.itemCard}>
             <img className={classes.heart} onClick={onClickLike} width={30} src={checkIsLiked(id) ? '../images/liked.png' : '../images/unliked.png'} alt='like'/>
@@ -44,7 +44,7 @@ const ItemCard = ({img, title, price, rate, id,  ...props}) => {
                         <img className='cu-p' src="../images/star.svg" alt="star"/>
                         <div className="ratingValue">{rate}</div>
                     </div>
-                    <h3 onClick={onClickAdd} className='clear cu-p'>{checkIsAdded(id) ? 'Купить' : 'Убрать'}</h3>
+                    <h3 onClick={onClickAdd} className='clear cu-p'>{checkIsAdded(id) ? 'Убрать' : 'Купить'}</h3>
                 </div>
             </div>
         </div>

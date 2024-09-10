@@ -1,17 +1,43 @@
 .headerRight{
     display: flex;
     li{
-        margin-right: 10px;
+        margin-right: 20px;
     }
 }
 .header{
     padding: 20px 20px 0px 20px;
     li {
         padding-right: 10px;
+        position: relative;
+        img {
+            width: 25px;
+        }
     }
+
 }
 .numberItems{
     background-color: darkorange;
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 1px;
+
+    line-height: 15px;
+    animation: fadeIn 0.5s ease-in-out;
+
+}
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

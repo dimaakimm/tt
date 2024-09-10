@@ -67,4 +67,8 @@ export const dataItems = [
     }
 ]
 export const dataFavourites = [1, 2, 13, 14]
-export const dataCartItems = [0, 1, 10]
+export const dataCartItems = [
+    {id: 0, amount: 1},
+    {id: 10, amount: 13},
+    {id: 2, amount: 2}
+]
