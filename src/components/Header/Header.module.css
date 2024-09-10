@@ -1,0 +1,17 @@
+.headerRight{
+    display: flex;
+    li{
+        margin-right: 10px;
+    }
+}
+.header{
+    padding: 20px 20px 0px 20px;
+    li {
+        padding-right: 10px;
+    }
+}
+.numberItems{
+    background-color: darkorange;
+    width: 10px;
+    height: 10px;
+}

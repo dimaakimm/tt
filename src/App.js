@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter} from "react-router-dom";
+import Header from "./components/Header/Header";
+import AppRouter from "./AppRouter/AppRouter";
+import {FavouritesCartContext} from "./context/context";
+import {useEffect, useState} from "react";
+import Footer from "./components/Footer/Footer";
+import {dataCartItems, dataFavourites, dataItems} from "./data/items";
 
 function App() {
+    const [cartItems, setCartItems] = useState(dataCartItems)
+    const [items, setItems] = useState(dataItems)
+    const [favourites, setFavourites] = useState(dataFavourites)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <FavouritesCartContext.Provider
+          value={{
+              cartItems,
+              setCartItems,
+              items,
+              setItems,
+              favourites,
+              setFavourites,
+          }}>
+          <BrowserRouter>
+              <Header />
+              <AppRouter />
+              <Footer />
+          </BrowserRouter>
+      </FavouritesCartContext.Provider>
   );
 }
 
